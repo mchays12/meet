@@ -83,3 +83,6 @@ Feature 6: Display Charts Visualizing Event Details
     Given: A user has not searched for any cities
     When: A user views event details for the cities displayed by default
     Then: A user can view a visual chart showing the number of upcoming events in each city
+
+Serverless Function User
+  The meet app can use serverless functions to create more efficiency for handling backend processes by using functions for things like data processing, user authentication, and event notifications, to name a few.
