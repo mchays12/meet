@@ -5,7 +5,7 @@ const calendar = google.calendar("v3");
 const SCOPES = ["https://www.googleapis.com/auth/calendar.events.public.readonly"];
 const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
 const redirect_uris = [
-  "https://mchays12.github.io/meet/"
+  'https://mchays12.github.io/meet/'
 ];
 
 const oAuth2Client = new google.auth.OAuth2(
@@ -72,7 +72,7 @@ module.exports.getAccessToken = async (event) => {
     });
 };
 
-/*module.exports.getCalendarEvents = async (event) => {
+module.exports.getCalendarEvents = async (event) => {
   //get access token
   const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
   //set credentials
@@ -113,4 +113,4 @@ module.exports.getAccessToken = async (event) => {
         body: JSON.stringify(error),
       };
     });
-}*/
+}
