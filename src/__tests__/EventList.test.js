@@ -9,12 +9,15 @@ describe('<EventList /> component', () => {
   beforeEach(() => {
     EventListComponent = render(<EventList />);
   })
+
   test('has an element with "list" role', () => {
     expect(EventListComponent.getByRole("list")).toBeInTheDocument();
   });
+
   test('renders correct number of events', async () => {
     const allEvents = await getEvents();
     EventListComponent.rerender(<EventList events={allEvents} />);
     expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
   });
+
 });

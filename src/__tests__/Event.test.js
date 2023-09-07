@@ -11,6 +11,7 @@ describe('<Event /> componenet', () => {
     EventComponent = render(<Event event={mockEvent} />)
   })
 
+
   test('has event title', () => {
     const title = EventComponent.queryByText(mockEvent.summary);
     expect(title).toBeInTheDocument();
@@ -50,10 +51,13 @@ describe('<Event /> componenet', () => {
     const user = userEvent.setup();
     const eventDefault = EventComponent.container.firstChild;
     const showDetailsButton = EventComponent.queryByText('Show Details');
+
     await user.click(showDetailsButton);
 
     const hideDetailsButton = EventComponent.queryByText('Hide Details')
+
     await user.click(hideDetailsButton);
+
     const details = eventDefault.querySelector('.details');
     expect(details).not.toBeInTheDocument();
   })

@@ -18,5 +18,11 @@ describe('<NumberOfEvents /> Componenet', () => {
   test('has default value of 32 for events shown', () => {
     const input = NumberOfEventsComponent.queryByRole('textbox');
     expect(input).toHaveValue('32');
+  });
+
+  test('textbox changes accordingly when use inputs', async () => {
+    const input = NumberOfEventsComponent.queryByRole('textbox');
+    await userEvent.type(input, '{backspace}{backspace}10');
+    expect(input).toHaveValue('10');
   })
 })

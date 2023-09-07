@@ -15,6 +15,7 @@ describe('<CitySearch /> component', () => {
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     expect(cityTextBox).toBeInTheDocument();
     expect(cityTextBox).toHaveClass('city');
+
   });
 
   test('suggestions list is hidden by default', () => {
