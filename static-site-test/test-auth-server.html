@@ -46,22 +46,22 @@
   </main>
 
   <script type="text/javascript">
-    const getAuthUrlButton = document.getElementById('getAuthUrlButton');
-    const resultElement = document.getElementById('result');
-    const resultLink = document.getElementById('authURL');
+    const getURLElement = document.getElementById("getAuthUrlButton");
+    const resultElement = document.getElementById("result");
+    const resultLink = document.getElementById("authURL");
     const getAuthURL =
       "https://znhbwf59s3.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url";
 
-    getAuthUrlButton.onclick = function () {
+    getURLElement.onclick = function () {
       fetch(getAuthURL)
         .then(function (response) {
           return response.json();
         })
         .then(function (json) {
           const result = JSON.stringify(json);
-          // getting the value of authUrl
+          // we get the value of authUrl
           const { authUrl } = JSON.parse(result);
-          // now adding to the html
+          // then add it to the html
           resultElement.innerText = result;
           resultLink.href = authUrl;
         });
