@@ -9,8 +9,8 @@ const Event = ({ event }) => {
   return (
     <li className="event" >
       <h1 className="summary"> {event.summary} </h1>
-      <p1 className="dateCreated"> {event.created} </p1>
-      <p1 className="location"> {event.location} </p1>
+      <p className="dateCreated"> {event.created} </p>
+      <p className="location"> {event.location} </p>
       <button
         className="details-btn"
         onClick={(toggleDetails)}
