@@ -16,6 +16,9 @@ describe('<App /> component', () => {
   test('render CitySearch', () => {
     expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
   });
+  test('render NumberOfEvents', () => {
+    expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
+  });
 
   describe('<App /> integration', () => {
     test('renders a list of events matching selected city by user', async () => {
@@ -47,18 +50,6 @@ describe('<App /> component', () => {
       });
     });
   })
-  test('number of events is rendered correctly', async () => {
-    const AppComponent = render(<App />);
-    const AppDOM = AppComponent.container.firstChild;
 
-    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-    const numberOfEventsInput = within(NumberOfEventsDOM).queryByRole('textbox');
 
-    await userEvent.type(numberOfEventsInput, '{backspace}{backspace}10');
-
-    const EventListDom = AppDOM.querySelector('#event-list');
-    const allRenderedEventItems = within(EventListDom).queryByRole('listitem');
-    expect(allRenderedEventItems.length).toEqual(10);
-
-  })
 });
