@@ -25,28 +25,6 @@ const checkToken = async (accessToken) => {
   return result;
 };
 
-/**
- *
- * This function will fetch the list of all events
- */
-export const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')) {
-    return mockData;
-  }
-
-  const token = await getAccessToken();
-
-  if (token) {
-    removeQuery();
-    const url = "https://znhbwf59s3.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
-    const response = await fetch(url);
-    const result = await response.json();
-    if (result) {
-      return result.events;
-    } else return null;
-  }
-};
-
 const removeQuery = () => {
   let newurl;
   if (window.history.pushState && window.location.pathname) {
@@ -72,6 +50,27 @@ const getToken = async (code) => {
 
   return access_token;
 };
+/**
+ *
+ * This function will fetch the list of all events
+ */
+export const getEvents = async () => {
+  if (window.location.href.startsWith('http://localhost')) {
+    return mockData;
+  }
+
+  const token = await getAccessToken();
+
+  if (token) {
+    removeQuery();
+    const url = "https://znhbwf59s3.execute-api.us-east-2.amazonaws.com/dev/api/get-events" + "/" + token;
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      return result.events;
+    } else return null;
+  }
+};
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
@@ -89,7 +88,7 @@ export const getAccessToken = async () => {
       const { authUrl } = result;
       return (window.location.href = authUrl);
     }
-    return code && getAccessToken(code);
+    return code && getToken(code);
   }
   return accessToken;
 }
