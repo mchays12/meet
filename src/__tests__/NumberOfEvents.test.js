@@ -1,6 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import NumberOfEvents from '../components/NumberOfEvents';
-import { render } from '@testing-library/react';
+import { render, } from '@testing-library/react';
+import App from "../App";
 
 describe('<NumberOfEvents /> Componenet', () => {
   let NumberOfEventsComponent;
@@ -26,3 +27,4 @@ describe('<NumberOfEvents /> Componenet', () => {
     expect(input).toHaveValue('10');
   })
 })
+
