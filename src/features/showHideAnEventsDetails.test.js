@@ -38,6 +38,7 @@ defineFeature(feature, test => {
     AppComponent = render(<App />)
     AppDOM = AppComponent.container.firstChild;
     EventListDOM = AppDOM.querySelector('#event-list');
+
     given('the user gets a list of events', async () => {
       await waitFor(() => {
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
@@ -52,9 +53,14 @@ defineFeature(feature, test => {
 
     });
 
-    then('the details will show up for that choosen event', () => {
+    then('the details will show up for that choosen event', async () => {
+
+
       const EventDOM = AppComponent.container.firstChild;
-      const details = EventDOM.querySelectorAll('.details');
+      const button = AppComponent.queryAllByText('Show Details')[0];
+
+      await userEvent.click(button);
+      const details = EventDOM.querySelector('.details');
       expect(details).toBeInTheDocument();
     });
 
