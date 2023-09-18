@@ -7,7 +7,7 @@ describe('<NumberOfEvents /> Componenet', () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
     NumberOfEventsComponent = render(
-      <NumberOfEvents setCurrentNOE={() => { }} setErrorAlert={() => { }} />
+      <NumberOfEvents setCurrentNOE={() => { }} />
     );
   });
 

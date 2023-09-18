@@ -2,7 +2,8 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import { render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import { getEvents } from '../mock-data';
+import { getEvents } from '../api';
+import '@testing-library/jest-dom';
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
@@ -85,8 +86,8 @@ defineFeature(feature, test => {
       // filtering the list of all events down to events located in Germany
       // citySearchInput.value should have the value "Berlin, Germany" at this point
       const berlinEvents = allEvents.filter(event => event.location === citySearchInput.value)
-      expect(EventListItems).toHaveLength(berlinEvents.length)
+      expect(EventListItems).toHaveLength(berlinEvents.length);
     });
   });
-
 });
+
