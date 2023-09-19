@@ -25,43 +25,40 @@ defineFeature(feature, test => {
     });
 
     then('all events will collapse by default.', async () => {
-      const EventDOM = AppComponent.container.firstChild;
-      const details = EventDOM.querySelector('.details');
-      expect(details).not.toBeInTheDocument();
+      const eventList = AppComponent.container.querySelector('#event-list');
+      const eventElements = within(eventList).queryAllByRole('listitem');
+      eventElements.forEach((eventElement) => {
+        const details = within(eventElement).queryByTestId('details-section');
+        expect(details).not.toBeInTheDocument();
+      });
     });
   });
 
   test('User can expand an event to see its details', ({ given, when, then }) => {
     let AppComponent;
-    let AppDOM;
-    let EventListDOM;
-    AppComponent = render(<App />)
-    AppDOM = AppComponent.container.firstChild;
-    EventListDOM = AppDOM.querySelector('#event-list');
-
     given('the user gets a list of events', async () => {
+      AppComponent = render(<App />);
+      const AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');
+
       await waitFor(() => {
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
         expect(EventListItems.length).toBe(32);
       })
     });
-
+    let expandedEventElement;
     when('a user selects an event\'s details', async () => {
-      const button = AppComponent.queryAllByText('Show Details')[0];
-
-      await userEvent.click(button);
-
+      const eventList = AppComponent.container.querySelector('#event-list');
+      const eventElements = within(eventList).queryAllByRole('listitem');
+      // Assuming the first event element is already expanded
+      const expandButton = within(eventElements[0]).queryByTestId('expand-button');
+      userEvent.click(expandButton);
+      expandedEventElement = eventElements[0];
     });
 
     then('the details will show up for that choosen event', async () => {
-
-
-      const EventDOM = AppComponent.container.firstChild;
-      const button = AppComponent.queryAllByText('Show Details')[0];
-
-      await userEvent.click(button);
-      const details = EventDOM.querySelector('.details');
-      expect(details).toBeInTheDocument();
+      const details = within(expandedEventElement).queryByTestId('details-section');
+      expect(details).toBeDefined();
     });
 
     test('User can collapse an event to hide its details', ({ given, when, then }) => {
@@ -88,7 +85,7 @@ defineFeature(feature, test => {
 
 
         const EventDOM = AppComponent.container.firstChild;
-        const details = EventDOM.querySelector('.details');
+        const details = EventDOM.querySelector('.details-section');
         expect(details).not.toBeInTheDocument();
       });
     });

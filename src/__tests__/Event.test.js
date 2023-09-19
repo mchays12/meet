@@ -34,7 +34,7 @@ describe('<Event /> componenet', () => {
 
   test('by default, event details should be hidden', () => {
     const eventDefault = EventComponent.queryByText('Show Details');
-    const details = eventDefault.querySelector('.details');
+    const details = eventDefault.querySelector('.details-section');
     expect(details).not.toBeInTheDocument();
   })
 
@@ -43,7 +43,7 @@ describe('<Event /> componenet', () => {
     const showDetailsButton = EventComponent.queryByText('Show Details');
     await user.click(showDetailsButton);
     const eventDefault = EventComponent.container.firstChild;
-    const details = eventDefault.querySelector('.details');
+    const details = eventDefault.querySelector('.details-section');
     expect(details).toBeInTheDocument();
   })
 
@@ -58,7 +58,7 @@ describe('<Event /> componenet', () => {
 
     await user.click(hideDetailsButton);
 
-    const details = eventDefault.querySelector('.details');
+    const details = eventDefault.querySelector('.details-section');
     expect(details).not.toBeInTheDocument();
   })
 })

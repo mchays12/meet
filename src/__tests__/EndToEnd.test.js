@@ -17,7 +17,7 @@ describe('show/hide an event details', () => {
   });
   test('An event element is collapsed by default', async () => {
     // if your event's details have a different selector, use it instead of .event .details
-    const eventDetails = await page.$('.event .details');
+    const eventDetails = await page.$('.event .details-section');
     expect(eventDetails).toBeNull();
     browser.close();
   });

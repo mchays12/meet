@@ -7,17 +7,20 @@ const Event = ({ event }) => {
     setShowDetails(!showDetails);
   }
   return (
-    <li className="event" >
+    <li className="event" data-testid="event-item">
       <h1 className="summary"> {event.summary} </h1>
       <p className="dateCreated"> {event.created} </p>
       <p className="location"> {event.location} </p>
       <button
-        className="details-btn"
+        className="details-btn" data-testid="expand-button"
         onClick={(toggleDetails)}
       >
         {showDetails ? 'Hide Details' : 'Show Details'}
       </button>
-      {showDetails && <div className="details">{event.description}</div>}
+      {showDetails && (
+        <div className="details-section" data-testid="details-section">
+          <p className='description'>{event.description}</p>
+        </div>)}
 
     </li>
   );
