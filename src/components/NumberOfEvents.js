@@ -1,15 +1,15 @@
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const handleInputChanged = (event) => {
     const value = event.target.value;
 
     if (isNaN(value)) {
 
     } else if (value > 50) {
-
+      setErrorAlert("value too high")
     } else if (value <= 0) {
-
+      setErrorAlert("value too low")
     } else {
-
+      setErrorAlert("")
       setCurrentNOE(value);
     }
   };
