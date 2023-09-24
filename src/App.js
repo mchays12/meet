@@ -9,6 +9,7 @@ import { extractLocations, getEvents } from './api';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 import './nprogress.css';
 import './App.css';
+import EventsGenresChart from './components/EventsGenresChart';
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -56,7 +57,10 @@ const App = () => {
         setErrorAlert={setErrorAlert}
         setWarningAlert={setWarningAlert}
       />
-      <CityEventsChart allLocations={allLocations} events={events} />
+      <div className='charts-container'>
+        <CityEventsChart allLocations={allLocations} events={events} />
+        <EventsGenresChart events={events} />
+      </div>
       <EventList events={events} />
     </div>
   );
